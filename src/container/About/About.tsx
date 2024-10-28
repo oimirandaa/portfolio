@@ -1,7 +1,8 @@
-import React, {useState, useEffect} from "react";
+import React  from "react";
 import {motion} from "framer-motion";
 import "./About.scss"
 import {images} from '../../constants'
+
 
 const abouts = [
   {title: "Front End Development", description: "I can Code", url:images.about01},
@@ -12,7 +13,7 @@ const abouts = [
 
 const About = () => {
   // const [abouts, setAbouts] = useState([]);
-
+  //
   // useEffect(() => {
   //   const query = `*[_type == "abouts"]`;
   //
