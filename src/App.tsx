@@ -12,7 +12,6 @@ function App() {
       <Work />
       <Skills />
       <Testimonial />
-      <Work />
       <Footer />
     </div>
   );

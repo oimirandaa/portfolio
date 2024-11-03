@@ -1,34 +1,36 @@
-import React  from "react";
-import {motion} from "framer-motion";
-import "./About.scss"
-import {images} from '../../constants'
+import React, {useEffect, useState} from 'react'
+import {motion} from 'framer-motion'
+import './About.scss'
 import {AppWrap} from '../../wrapper'
 
 
-const abouts = [
-  {title: "Front End Development", description: "I can Code", url:images.about01},
-  {title: "Back End Development", description: "I can Code", url:images.about02},
-  {title: "Data Analysis and Data Science", description: "I can Code", url:images.about03},
-  {title: "Cloud Development", description: "I can Code", url:images.about04},
-];
+interface AboutObj {
+  id: number,
+  title: string,
+  description: string,
+  imageUrl: string,
+}
+
+async function fetchAbouts(): Promise<AboutObj[]>{
+  const response = await fetch('http://localhost:8080/about/all');
+  return await response.json();
+}
 
 const About = () => {
-  // const [abouts, setAbouts] = useState([]);
-  //
-  // useEffect(() => {
-  //   const query = `*[_type == "abouts"]`;
-  //
-  //   client.fetch(query).then((data) => {
-  //     setAbouts(data);
-  //   })
-  // }, []);
+  const [abouts, setAbouts] = useState<AboutObj[]>([]);
+
+  useEffect(() => {
+      fetchAbouts()
+      .then(data => setAbouts(data))
+      .catch(error => console.error('Error fetching abouts:', error));
+  }, []);
 
   return (
     <>
       <h2 className="head-text">I Know that <span>Good Design</span> <br />means  <span>Good Business</span></h2>
 
       <div className="app__profiles">
-        {abouts.map((about, index) => (
+        {abouts.map((about: AboutObj, index: number) => (
           <motion.div
             whileInView={{ opacity: 1 }}
             whileHover={{ scale: 1.1 }}
@@ -36,7 +38,7 @@ const About = () => {
             className="app__profile-item"
             key={about.title + index}
           >
-            <img src={about.url} alt={about.title} />
+            <img src={about.imageUrl} alt={about.title} />
             <h2 className="bold-text" style={{ marginTop: 20 }}>{about.title}</h2>
             <p className="p-text" style={{ marginTop: 10 }}>{about.description}</p>
           </motion.div>
