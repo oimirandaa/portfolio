@@ -11,18 +11,14 @@ interface AboutObj {
   imageUrl: string,
 }
 
-async function fetchAbouts(): Promise<AboutObj[]>{
-  const response = await fetch('http://localhost:8080/about/all');
-  return await response.json();
-}
-
 const About = () => {
   const [abouts, setAbouts] = useState<AboutObj[]>([]);
 
   useEffect(() => {
-      fetchAbouts()
-      .then(data => setAbouts(data))
-      .catch(error => console.error('Error fetching abouts:', error));
+      fetch('http://localhost:8080/api/about/all')
+        .then(response => response.json())
+        .then(data => setAbouts(data))
+        .catch(error => console.error('Error fetching abouts:', error));
   }, []);
 
   return (
@@ -49,4 +45,4 @@ const About = () => {
 };
 
 
-export default AppWrap(About, 'about', '');
+export default AppWrap(About, 'about', 'app__whitebg');
