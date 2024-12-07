@@ -12,16 +12,15 @@ interface WorksObj{
   projectLink: string,
   codeLink: string,
   imageURL: string,
-  tags: string,
-  // tags: Tags,
+  tags: Tags,
 }
-// interface Tags{
-//   tag1: string,
-//   tag2: string,
-//   tag3: string,
-//   tag4: string,
-//   tag5: string,
-// }
+interface Tags{
+  tag1: string,
+  tag2: string,
+  tag3: string,
+  tag4: string,
+  tag5: string,
+}
 
 const Work = () => {
 
@@ -41,7 +40,18 @@ const Work = () => {
   })
 
   const handleWorkFilter = (item:string)=> {
+    setActiveFilter(item);
+    setAnimateCard({y:100, opacity:0});
 
+    setTimeout(() => {
+      setAnimateCard({y:0, opacity:1});
+
+      if(item === 'All') {
+        setFilterWork(works);
+      }else{
+        setFilterWork(works.filter((work) => work.tags.tag1.includes(item)));
+      }
+    }, 500);
   }
 
   return (
@@ -104,7 +114,7 @@ const Work = () => {
               <p className="p-text" style={{marginTop:10}}>{work.description}</p>
 
               <div className="app__work-tag app__flex">
-                <p className="p-text">{work.tags}</p>
+                <p className="p-text">{work.tags.tag2}</p>
               </div>
             </div>
           </div>
