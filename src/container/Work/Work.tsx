@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {motion} from 'framer-motion'
-import {AiFillEye, AiFillGithub} from 'react-icons/ai'
+import {AiFillEye} from 'react-icons/ai'
 import './Work.scss'
-import Images from '../../constants/images'
 import {AppWrap} from '../../wrapper'
 
 interface WorksObj{
@@ -12,15 +11,21 @@ interface WorksObj{
   projectLink: string,
   codeLink: string,
   imageURL: string,
-  tags: Tags,
+  tags: {
+    tag1: string,
+    tag2: string,
+    tag3: string,
+    tag4: string,
+    tag5: string,
 }
-interface Tags{
-  tag1: string,
-  tag2: string,
-  tag3: string,
-  tag4: string,
-  tag5: string,
 }
+// interface Tags{
+//   tag1: string,
+//   tag2: string,
+//   tag3: string,
+//   tag4: string,
+//   tag5: string,
+// }
 
 const Work = () => {
 
