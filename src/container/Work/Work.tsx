@@ -17,7 +17,7 @@ interface WorksObj{
     tag3: string,
     tag4: string,
     tag5: string,
-}
+  }
 }
 // interface Tags{
 //   tag1: string,

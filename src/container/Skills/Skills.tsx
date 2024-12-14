@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {motion} from 'framer-motion'
-import ReactTooltip from 'react-tooltip'
+import { Tooltip } from 'react-tooltip'
 import './Skills.scss'
 import {AppWrap} from '../../wrapper'
 
@@ -10,7 +10,13 @@ interface SkillsObj {
   imageUrl: string,
 }
 interface ExperienceObj {
-
+  year: string,
+  works: WorksExpObj[];
+}
+interface WorksExpObj{
+  name: string,
+  company: string,
+  description: string,
 }
 
 const Skills = () => {
@@ -54,9 +60,52 @@ const Skills = () => {
             </motion.div>
           ))}
         </motion.div>
+
+        <motion.div className="app__skills-exp">
+          {experience.map((experience) => (
+
+            <motion.div
+              className="app__skills-exp-item"
+              key={experience.year}
+            >
+              <div className="app__skills-exp-year">
+                <p className="bold-text">{experience.year}</p>
+              </div>
+
+              <motion.div className="app__skills-exp-works">
+                {experience.works.map((work) => (
+                  <>
+                    <motion.div
+                      whileInView={{opacity: [0, 1]}}
+                      transition={{ duration : 0.5}}
+                      className="app__skills-exp-work"
+                      data-tip
+                      data-for={work.name}
+                      key={work.name}>
+
+                        <h4 className="bold-text">{work.name}</h4>
+                        <p className="p-text">{work.company}</p>
+                    </motion.div>
+                    <Tooltip
+                      id={work.name}
+                      arrowColor="#fff"
+                      className="skills-tooltip"
+                    >
+                      {work.description}
+                    </Tooltip>
+                  </>
+                ))}
+
+              </motion.div>
+            </motion.div>
+
+
+          ))}
+
+        </motion.div>
       </div>
     </>
   )
 };
 
-export default Skills;
+export default AppWrap(Skills, 'skills','app__primarybg');

@@ -1,4 +1,4 @@
-import AppWrap from './AppWrapper';
+import AppWrap from './AppWrap';
 
 export {
   AppWrap,
