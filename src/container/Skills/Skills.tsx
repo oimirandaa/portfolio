@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {motion} from 'framer-motion'
 import { Tooltip } from 'react-tooltip'
 import './Skills.scss'
-import {AppWrap} from '../../wrapper'
+import {AppWrap, MotionWrap} from '../../wrapper'
 
 interface SkillsObj {
   name:string,
@@ -108,4 +108,7 @@ const Skills = () => {
   )
 };
 
-export default AppWrap(Skills, 'skills','app__primarybg');
+export default AppWrap(
+  MotionWrap(Skills,'app__skills'),
+  'skills',
+  'app__whitebg');

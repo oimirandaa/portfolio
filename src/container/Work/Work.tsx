@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {motion} from 'framer-motion'
 import {AiFillEye} from 'react-icons/ai'
 import './Work.scss'
-import {AppWrap} from '../../wrapper'
+import {AppWrap, MotionWrap} from '../../wrapper'
 
 interface WorksObj{
   id: number,
@@ -129,4 +129,7 @@ const Work = () => {
   )
 };
 
-export default AppWrap(Work, 'work', 'app__primarybg');
+export default AppWrap(
+  MotionWrap(Work, 'app__works'),
+  'work',
+  'app__primarybg');
