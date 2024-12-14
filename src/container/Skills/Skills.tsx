@@ -38,7 +38,7 @@ const Skills = () => {
         setSkills(data);
       })
       .catch(error => console.error('Error fetching work:', error));
-  })
+  }, [])
 
   return (
     <>
